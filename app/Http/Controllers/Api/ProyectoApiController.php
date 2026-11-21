@@ -13,15 +13,15 @@ use Illuminate\Support\Facades\DB;
 use Throwable;
 
 /**
- * EVALUACION UNIDAD 3 - CRUD de Proyectos sobre la base de datos.
+ * CRUD de Proyectos sobre la base de datos.
  *
- * Cada metodo devuelve explicitamente su codigo de respuesta HTTP,
- * que es el criterio de nivel Sobresaliente de la Rubrica_U3.
+ * Cada metodo declara explicitamente su codigo de respuesta HTTP con las
+ * constantes Response::HTTP_*, en vez de dejarlo implicito.
  */
 class ProyectoApiController extends Controller
 {
     /**
-     * INDICADOR 2 - Recupera datos existentes (listado).
+     * Listado de proyectos, con filtros opcionales.
      * GET /api/proyectos  ->  200 OK
      * Si no hay registros devuelve un arreglo vacio [].
      */
@@ -29,7 +29,7 @@ class ProyectoApiController extends Controller
     {
         $query = Proyecto::query();
 
-        // Filtros de busqueda dinamicos con Eloquent (Apunte 3, punto 4).
+        // Filtros de busqueda dinamicos con Eloquent.
         if ($request->filled('nombre')) {
             $query->where('nombre', 'like', '%' . $request->query('nombre') . '%');
         }
@@ -46,7 +46,7 @@ class ProyectoApiController extends Controller
     }
 
     /**
-     * INDICADOR 1 - Inserta nuevos registros.
+     * Crear un proyecto.
      * POST /api/proyectos  ->  201 Created
      * Las validaciones se resuelven en StoreProyectoRequest (422 si fallan).
      */
@@ -59,7 +59,7 @@ class ProyectoApiController extends Controller
     }
 
     /**
-     * INDICADOR 2 - Recupera un registro por su Id.
+     * Obtener un proyecto por su Id.
      * GET /api/proyectos/{id}  ->  200 OK | 404 Not Found
      */
     public function show(string $id): JsonResponse
@@ -77,7 +77,7 @@ class ProyectoApiController extends Controller
     }
 
     /**
-     * INDICADOR 3 - Actualiza registros existentes.
+     * Actualizar un proyecto existente.
      * PUT|PATCH /api/proyectos/{id}  ->  200 OK | 404 Not Found | 422
      * Devuelve el recurso completo con todos los campos actualizados.
      */
@@ -98,7 +98,7 @@ class ProyectoApiController extends Controller
     }
 
     /**
-     * INDICADOR 4 - Elimina registros de manera segura y eficiente.
+     * Eliminar un proyecto.
      * DELETE /api/proyectos/{id}  ->  204 No Content | 404 Not Found
      * La respuesta debe ser vacia.
      */

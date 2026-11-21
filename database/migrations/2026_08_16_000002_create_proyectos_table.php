@@ -7,9 +7,8 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Tabla proyectos. Campos definidos en la Evaluacion U2.
-     * Todos NOT NULL porque la Evaluacion U3 exige que todos los campos
-     * sean requeridos y no esten vacios.
+     * Tabla proyectos. Todos los campos son NOT NULL: la API exige que
+     * lleguen presentes y no vacios al crear un registro.
      */
     public function up(): void
     {
@@ -28,7 +27,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            // Indices para optimizar los filtros de busqueda (Apunte 3, punto 4).
+            // Indices para optimizar los filtros de busqueda.
             $table->index('estado');
             $table->index('responsable');
         });

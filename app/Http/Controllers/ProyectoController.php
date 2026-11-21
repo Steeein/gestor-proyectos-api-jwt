@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 /**
- * CRUD web (vistas Blade) de las Unidades 1 y 2.
- * Unidad 3: las operaciones dejan de ser simuladas y persisten
- * realmente en la base de datos a traves de Eloquent.
+ * CRUD web (vistas Blade).
+ * Las operaciones persisten en la base de datos a traves de Eloquent,
+ * sobre la misma tabla que expone la API.
  */
 class ProyectoController extends Controller
 {

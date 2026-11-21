@@ -8,8 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 /**
- * Modelo de usuario de la Unidad 2 (tabla usuarios: nombre, correo, clave).
- * Unidad 3: implementa JWTSubject para poder emitir tokens JWT.
+ * Modelo de usuario (tabla usuarios: nombre, correo, clave).
+ * Implementa JWTSubject para poder emitir tokens JWT.
  */
 class Usuario extends Authenticatable implements JWTSubject
 {

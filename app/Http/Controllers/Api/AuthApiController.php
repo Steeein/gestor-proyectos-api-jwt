@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 /**
- * Autenticacion JWT (Manual de Integracion JWT del curso),
- * adaptado al modelo Usuario de la Unidad 2 (correo / clave).
+ * Autenticacion JWT sobre el modelo Usuario (correo / clave):
+ * registro, login, perfil, logout y refresco de token.
  */
 class AuthApiController extends Controller
 {

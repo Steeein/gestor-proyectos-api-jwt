@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Prefijo automatico: /api
 |
-| EVALUACION UNIDAD 3: los cinco endpoints del CRUD.
-| Manual JWT: register y login son publicas, el resto exige token.
+| Los cinco endpoints del CRUD de proyectos.
+| register y login son publicas; el resto exige token JWT.
 */
 
 /*
@@ -37,21 +37,21 @@ Route::middleware('auth:api')->group(function () {
 
     Route::prefix('proyectos')->group(function () {
 
-        // INDICADOR 2 - Listar todos los proyectos.
+        // Listar todos los proyectos.
         Route::get('/', [ProyectoApiController::class, 'index']);                    // 200
 
-        // INDICADOR 1 - Agregar un proyecto.
+        // Agregar un proyecto.
         Route::post('/', [ProyectoApiController::class, 'store']);                   // 201 | 422
 
-        // INDICADOR 2 - Obtener un proyecto por su id.
+        // Obtener un proyecto por su id.
         Route::get('/{id}', [ProyectoApiController::class, 'show'])
              ->whereNumber('id');                                                    // 200 | 404
 
-        // INDICADOR 3 - Actualizar un proyecto por su id.
+        // Actualizar un proyecto por su id.
         Route::match(['put', 'patch'], '/{id}', [ProyectoApiController::class, 'update'])
              ->whereNumber('id');                                                    // 200 | 404 | 422
 
-        // INDICADOR 4 - Eliminar un proyecto por su id.
+        // Eliminar un proyecto por su id.
         Route::delete('/{id}', [ProyectoApiController::class, 'destroy'])
              ->whereNumber('id');                                                    // 204 | 404
     });

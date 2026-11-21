@@ -11,8 +11,7 @@ class ProyectoSeeder extends Seeder
 {
     public function run(): void
     {
-        // Usuario base para pruebas. La clave se cifra con bcrypt
-        // (requisito de cifrado de la Unidad 2).
+        // Usuario base para pruebas. La clave se cifra con bcrypt.
         $usuario = Usuario::firstOrCreate(
             ['correo' => 'admin@techsolutions.cl'],
             [

@@ -4,7 +4,7 @@ namespace App\DTOs;
 
 /**
  * Estructura estandar de respuesta para los endpoints de autenticacion:
- * code, message y data (segun el Manual de Integracion JWT del curso).
+ * code, message y data.
  */
 class ApiResponseDTO
 {

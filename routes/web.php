@@ -10,7 +10,7 @@ Route::get('/', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Panel de pruebas de la API (Unidad 3)
+| Panel de pruebas de la API
 |--------------------------------------------------------------------------
 | Interfaz que consume la API con JWT y muestra en pantalla el codigo
 | de respuesta HTTP de cada operacion del CRUD.
@@ -19,7 +19,7 @@ Route::view('/panel', 'api.panel')->name('panel');
 
 /*
 |--------------------------------------------------------------------------
-| Rutas de Autenticación (Unidad 2)
+| Rutas de Autenticación
 |--------------------------------------------------------------------------
 */
 

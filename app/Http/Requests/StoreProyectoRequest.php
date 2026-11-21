@@ -10,7 +10,7 @@ use Illuminate\Validation\Rule;
 
 /**
  * Validaciones para POST /api/proyectos.
- * Apunte 3, punto 3.2: clases de Form Request.
+ * La validacion vive en el Form Request, no en el controlador.
  */
 class StoreProyectoRequest extends FormRequest
 {
@@ -30,8 +30,7 @@ class StoreProyectoRequest extends FormRequest
     }
 
     /**
-     * Requisito de la evaluacion:
-     * "Todos los campos son requeridos y no deben estar vacios".
+     * Todos los campos son obligatorios y no pueden llegar vacios.
      */
     public function rules(): array
     {

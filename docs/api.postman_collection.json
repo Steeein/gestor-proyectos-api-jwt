@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "Gestion de Proyectos API",
-    "description": "Coleccion de pruebas de la Evaluacion Unidad 3. Ejecute primero '00 - Login' : el token JWT se guarda solo y el resto de las peticiones lo usan automaticamente.",
+    "description": "Coleccion de pruebas de la API. Ejecute primero '00 - Login' : el token JWT se guarda solo y el resto de las peticiones lo usan automaticamente.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -187,7 +187,7 @@
       }
     },
     {
-      "name": "10 - INDICADOR 1: Crear proyecto -> 201",
+      "name": "10 - Crear proyecto -> 201",
       "request": {
         "method": "POST",
         "header": [
@@ -216,7 +216,7 @@
       }
     },
     {
-      "name": "11 - INDICADOR 1: Crear con campos vacios -> 422",
+      "name": "11 - Crear con campos vacios -> 422",
       "request": {
         "method": "POST",
         "header": [
@@ -245,7 +245,7 @@
       }
     },
     {
-      "name": "20 - INDICADOR 2: Listar todos -> 200",
+      "name": "20 - Listar todos -> 200",
       "request": {
         "method": "GET",
         "header": [
@@ -266,7 +266,7 @@
       }
     },
     {
-      "name": "21 - INDICADOR 2: Obtener por Id -> 200",
+      "name": "21 - Obtener por Id -> 200",
       "request": {
         "method": "GET",
         "header": [
@@ -288,7 +288,7 @@
       }
     },
     {
-      "name": "22 - INDICADOR 2: Id inexistente -> 404",
+      "name": "22 - Id inexistente -> 404",
       "request": {
         "method": "GET",
         "header": [
@@ -337,7 +337,7 @@
       }
     },
     {
-      "name": "30 - INDICADOR 3: Actualizar (PUT) -> 200",
+      "name": "30 - Actualizar (PUT) -> 200",
       "request": {
         "method": "PUT",
         "header": [
@@ -367,7 +367,7 @@
       }
     },
     {
-      "name": "31 - INDICADOR 3: Actualizar parcial (PATCH) -> 200",
+      "name": "31 - Actualizar parcial (PATCH) -> 200",
       "request": {
         "method": "PATCH",
         "header": [
@@ -397,7 +397,7 @@
       }
     },
     {
-      "name": "32 - INDICADOR 3: Actualizar Id inexistente -> 404",
+      "name": "32 - Actualizar Id inexistente -> 404",
       "request": {
         "method": "PUT",
         "header": [
@@ -427,7 +427,7 @@
       }
     },
     {
-      "name": "40 - INDICADOR 4: Eliminar -> 204",
+      "name": "40 - Eliminar -> 204",
       "request": {
         "method": "DELETE",
         "header": [
@@ -449,7 +449,7 @@
       }
     },
     {
-      "name": "41 - INDICADOR 4: Eliminar Id inexistente -> 404",
+      "name": "41 - Eliminar Id inexistente -> 404",
       "request": {
         "method": "DELETE",
         "header": [

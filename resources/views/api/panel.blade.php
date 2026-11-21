@@ -43,7 +43,7 @@
 
     <header>
         <h1>Tech Solutions &mdash; Panel API con autenticacion JWT</h1>
-        <p>Evaluacion Unidad 3 &middot; CRUD con Laravel 12, Eloquent ORM y JWT</p>
+        <p>CRUD con Laravel 12, Eloquent ORM y JWT</p>
     </header>
 
     <div class="tarjeta">

@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Modelo Eloquent de Proyecto.
- * Unidad 3: reemplaza los datos estaticos de la Unidad 1 por persistencia real
- * en la base de datos a traves del ORM.
+ * Persiste en la base de datos a traves del ORM.
  */
 class Proyecto extends Model
 {
@@ -26,8 +25,7 @@ class Proyecto extends Model
     protected $table = 'proyectos';
 
     /**
-     * Asignacion masiva controlada: protege contra Mass Assignment
-     * (criterio "de manera segura" del indicador 4 de la rubrica).
+     * Asignacion masiva controlada: protege contra Mass Assignment.
      */
     protected $fillable = [
         'nombre',
