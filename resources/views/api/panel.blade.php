@@ -55,7 +55,7 @@
             </div>
             <div class="campo">
                 <label for="clave">Clave</label>
-                <input type="password" id="clave" value="desarrollo_software_1">
+                <input type="password" id="clave" value="admin1234">
             </div>
         </div>
         <div class="acciones">

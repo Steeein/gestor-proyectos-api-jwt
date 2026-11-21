@@ -60,7 +60,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"correo\": \"admin@techsolutions.cl\",\n    \"clave\": \"desarrollo_software_1\"\n}"
+          "raw": "{\n    \"correo\": \"admin@techsolutions.cl\",\n    \"clave\": \"admin1234\"\n}"
         },
         "url": {
           "raw": "{{base_url}}/auth/login",

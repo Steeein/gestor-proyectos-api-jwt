@@ -74,7 +74,7 @@ php artisan jwt:secret
 ### 5. Crear la base de datos
 
 ```bash
-mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS desarrollo_software_1 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS gestor_proyectos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 ```
 
 Verifique que `.env` contenga estas credenciales (son solo para desarrollo local):
@@ -83,9 +83,9 @@ Verifique que `.env` contenga estas credenciales (son solo para desarrollo local
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=desarrollo_software_1
+DB_DATABASE=gestor_proyectos
 DB_USERNAME=root
-DB_PASSWORD=desarrollo_software_1
+DB_PASSWORD=gestor_proyectos
 ```
 
 ### 6. Ejecutar migraciones y datos de prueba
@@ -120,7 +120,7 @@ Content-Type: application/json
 
 {
     "correo": "admin@techsolutions.cl",
-    "clave": "desarrollo_software_1"
+    "clave": "admin1234"
 }
 ```
 
@@ -301,7 +301,7 @@ configuración manual.
 
 | Usuario | Correo | Clave |
 |---|---|---|
-| Administrador | `admin@techsolutions.cl` | `desarrollo_software_1` |
+| Administrador | `admin@techsolutions.cl` | `admin1234` |
 
 ---
 

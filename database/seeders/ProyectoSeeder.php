@@ -16,7 +16,7 @@ class ProyectoSeeder extends Seeder
             ['correo' => 'admin@techsolutions.cl'],
             [
                 'nombre' => 'Administrador Tech Solutions',
-                'clave'  => Hash::make('desarrollo_software_1'),
+                'clave'  => Hash::make('admin1234'),
             ]
         );
 
