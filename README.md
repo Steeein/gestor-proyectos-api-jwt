@@ -1,13 +1,11 @@
-﻿# EV_U3 — Software de Gestión de Proyectos (Tech Solutions)
+# Gestión de Proyectos — API REST con JWT
 
-API REST con operaciones CRUD sobre base de datos, desarrollada con **Laravel 12** y **Eloquent ORM**,
-con autenticación mediante **JWT**.
+API REST con operaciones CRUD sobre base de datos, construida con **Laravel 12** y **Eloquent ORM**,
+protegida con autenticación **JWT**. Incluye además un CRUD web en Blade y un panel visual para
+probar la API sin herramientas externas.
 
-**Asignatura:** Desarrollo de Software Web I — IF204IINF
-**Evaluación:** Sumativa Unidad 3 — Implementa operaciones CRUD para interactuar con la base de datos
-**Estudiante:** Diego Abaroa Badilla
-**Repositorio:** https://github.com/Steeein/EV_U3_ABAROA_DIEGO
-**Docente:** Victor Israel Cofre Farias
+Es la evolución de [gestor-proyectos-auth](https://github.com/Steeein/gestor-proyectos-auth):
+la misma base de datos, ahora expuesta como API.
 
 ---
 
@@ -36,11 +34,11 @@ con autenticación mediante **JWT**.
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/Steeein/EV_U3_ABAROA_DIEGO.git
+git clone https://github.com/Steeein/gestor-proyectos-api-jwt.git
 ```
 
 ```bash
-cd EV_U3_ABAROA_DIEGO
+cd gestor-proyectos-api-jwt
 ```
 
 ### 2. Instalar dependencias
@@ -79,7 +77,7 @@ php artisan jwt:secret
 mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS desarrollo_software_1 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 ```
 
-Verifique que `.env` contenga estas credenciales (son las definidas en la Evaluación U2):
+Verifique que `.env` contenga estas credenciales (son solo para desarrollo local):
 
 ```ini
 DB_CONNECTION=mysql
@@ -112,7 +110,7 @@ php artisan serve
 
 ---
 
-## ⚠️ Cómo probar la API — la API está protegida con JWT
+## Cómo probar la API
 
 Todos los endpoints del CRUD requieren un token. **Paso 1 obligatorio:**
 
@@ -132,7 +130,7 @@ La respuesta contiene `data.access_token`. Envíelo en todas las demás peticion
 Authorization: Bearer <access_token>
 ```
 
-> **Atajo recomendado:** importe `docs/EV_U3.postman_collection.json` en Postman,
+> **Atajo recomendado:** importe `docs/api.postman_collection.json` en Postman,
 > ejecute el request **"00 - Login"** y el token se guarda automáticamente para el resto
 > de la colección. Luego puede ejecutar cualquier petición sin configurar nada más.
 
@@ -141,7 +139,7 @@ opere el CRUD desde la interfaz. El panel muestra en pantalla el código HTTP de
 
 ---
 
-## Endpoints del CRUD (Evaluación U3)
+## Endpoints del CRUD
 
 | Método | Ruta | Éxito | Errores |
 |---|---|---|---|
@@ -199,7 +197,7 @@ curl -i -X DELETE http://127.0.0.1:8000/api/proyectos/3 -H "Authorization: Beare
 
 ## Modelo de datos
 
-**Tabla `proyectos`** (campos definidos en la Evaluación U2):
+**Tabla `proyectos`**
 
 | Campo | Tipo | Obligatorio |
 |---|---|---|
@@ -211,7 +209,7 @@ curl -i -X DELETE http://127.0.0.1:8000/api/proyectos/3 -H "Authorization: Beare
 | `monto` | decimal(12,2) | sí |
 | `created_by` | FK → `usuarios.id` | sí |
 
-**Tabla `usuarios`** (heredada de la U2): `id`, `nombre`, `correo` (único), `clave` (cifrada con bcrypt).
+**Tabla `usuarios`:** `id`, `nombre`, `correo` (único), `clave` (cifrada con bcrypt).
 
 Relación: `Proyecto belongsTo Usuario` · `Usuario hasMany Proyecto`.
 
@@ -226,10 +224,10 @@ app/
 ├── Http/
 │   ├── Controllers/
 │   │   ├── Api/
-│   │   │   ├── ProyectoApiController.php   ← CRUD de la U3 (los 5 métodos)
-│   │   │   └── AuthApiController.php       ← Autenticación JWT
+│   │   │   ├── ProyectoApiController.php   CRUD de la API (los 5 métodos)
+│   │   │   └── AuthApiController.php       Autenticación JWT
 │   │   ├── ProyectoController.php          CRUD web (vistas Blade)
-│   │   └── AuthController.php              Login/registro web (U2)
+│   │   └── AuthController.php              Login/registro web
 │   └── Requests/
 │       ├── StoreProyectoRequest.php        Validaciones POST → 422
 │       └── UpdateProyectoRequest.php       Validaciones PUT/PATCH → 422
@@ -246,60 +244,56 @@ database/
 
 routes/
 ├── api.php                                 Rutas públicas y protegidas con auth:api
-└── web.php                                 Rutas web (U1/U2) + /panel
+└── web.php                                 Rutas web + /panel
 
 resources/views/
 ├── api/panel.blade.php                     Panel visual de pruebas de la API
-├── proyectos/                              Vistas CRUD (U1)
-└── auth/                                   Login y registro (U2)
+├── proyectos/                              Vistas del CRUD web
+└── auth/                                   Login y registro web
 
 docs/
-├── EV_U3.postman_collection.json           Colección de pruebas
-└── capturas/                               Evidencia de los códigos HTTP
+├── api.postman_collection.json             Colección de pruebas
+└── capturas/                               Capturas de las respuestas HTTP
 ```
 
 ---
 
-## Cobertura de los indicadores de la rúbrica
+## Comportamiento del CRUD
 
-| Indicador | Implementación | Código HTTP |
+| Operación | Implementación | Códigos HTTP |
 |---|---|---|
-| **Inserta nuevos registros** | `ProyectoApiController::store()` + `StoreProyectoRequest` | 201 · 422 |
-| **Recupera datos existentes** | `ProyectoApiController::index()` y `show()` | 200 · 404 |
-| **Actualiza registros** | `ProyectoApiController::update()` + `UpdateProyectoRequest` | 200 · 404 · 422 |
-| **Elimina registros** | `ProyectoApiController::destroy()` (con transacción) | 204 · 404 |
+| **Insertar** | `ProyectoApiController::store()` + `StoreProyectoRequest` | 201 · 422 |
+| **Consultar** | `ProyectoApiController::index()` y `show()` | 200 · 404 |
+| **Actualizar** | `ProyectoApiController::update()` + `UpdateProyectoRequest` | 200 · 404 · 422 |
+| **Eliminar** | `ProyectoApiController::destroy()` (dentro de una transacción) | 204 · 404 |
 
-Cada método declara su código de respuesta de forma explícita mediante las constantes
-`Response::HTTP_*`, y las validaciones están delegadas a clases Form Request
-(Apunte 3, sección 3.2).
+Cada método declara su código de respuesta de forma explícita con las constantes
+`Response::HTTP_*`, y las validaciones están delegadas a clases Form Request en lugar de
+vivir en el controlador.
 
 ---
 
-## Decisiones de diseño documentadas
+## Decisiones de diseño
 
-**1. El método de actualización devuelve 200, no 201.**
-El enunciado de la evaluación se contradice: el encabezado del requisito indica
-*"con una respuesta HTTP de 201"* y su sub-viñeta indica *"El codigo de respuesta debe ser 200"*.
-Se implementó **200 OK** porque es la instrucción específica de la sub-viñeta, es la convención
-REST correcta (201 se reserva para creación de recursos) y coincide con lo expuesto en el
-Apunte 3, sección 1.3.2.
+**1. `PUT` / `PATCH` devuelven 200, no 201.**
+`201 Created` se reserva para la creación de recursos. Una actualización no crea nada nuevo,
+así que responde `200 OK` con el recurso ya modificado.
 
-**2. Los endpoints GET devuelven el recurso en la raíz del JSON, sin envoltorio.**
-El requisito exige que el listado retorne *"un arreglo vacío"* cuando no hay registros.
-Envolver la respuesta en un objeto `{code, message, data}` impediría cumplirlo literalmente,
-por lo que ese formato se reservó para los endpoints de autenticación (`ApiResponseDTO`),
-tal como los presenta el Manual de Integración JWT del curso.
+**2. Los endpoints `GET` devuelven el recurso en la raíz del JSON, sin envoltorio.**
+Así `GET /api/proyectos` retorna directamente un arreglo (`[]` cuando no hay registros) y el
+cliente no tiene que desempaquetar nada. El formato `{code, message, data}` (`ApiResponseDTO`)
+se reserva para los endpoints de autenticación, donde la respuesta no es un recurso sino el
+resultado de una operación.
 
-**3. `created_by` es obligatorio en la creación.**
-El enunciado indica que *"todos los campos son requeridos y no deben estar vacíos"*, y
-`created_by` es parte del modelo Proyecto definido en la U2. Si la petición se hace con un
-token válido y no se envía el campo, se completa automáticamente con el id del usuario
-autenticado (`StoreProyectoRequest::prepareForValidation`).
+**3. `created_by` se completa automáticamente.**
+El campo es obligatorio en el modelo, pero si la petición llega con un token válido y no lo
+envía, `StoreProyectoRequest::prepareForValidation()` lo rellena con el id del usuario
+autenticado.
 
-**4. Protección de la API con JWT.**
-Se aplicó el middleware `auth:api` a todas las rutas del CRUD siguiendo el Manual de
-Integración JWT del curso. Las credenciales de prueba y la colección de Postman
-autoconfigurada permiten verificar todos los endpoints sin fricción.
+**4. Toda la API va detrás de `auth:api`.**
+El middleware JWT protege las cinco rutas del CRUD; sin token la respuesta es `401`. La
+colección de Postman guarda el token tras el login para poder recorrer los endpoints sin
+configuración manual.
 
 ---
 
@@ -307,7 +301,7 @@ autoconfigurada permiten verificar todos los endpoints sin fricción.
 
 | Usuario | Correo | Clave |
 |---|---|---|
-| Administrador Tech Solutions | `admin@techsolutions.cl` | `desarrollo_software_1` |
+| Administrador | `admin@techsolutions.cl` | `desarrollo_software_1` |
 
 ---
 
@@ -315,5 +309,5 @@ autoconfigurada permiten verificar todos los endpoints sin fricción.
 
 - El archivo `.env` no se versiona (contiene claves). Use `.env.example` como plantilla.
 - La carpeta `vendor/` no se versiona; se reconstruye con `composer install`.
-- Las rutas y vistas web de las Unidades 1 y 2 (`/proyectos`, `/login`, `/registro`, `/inicio`)
-  se conservan operativas y ahora persisten realmente en la base de datos.
+- Las vistas web (`/proyectos`, `/login`, `/registro`, `/inicio`) se mantienen operativas y
+  persisten en la misma base de datos que consume la API.
